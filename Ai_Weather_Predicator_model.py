@@ -34,8 +34,15 @@ model.fit(X, y)
 
 # 3. Ask for today's weather
 def ask(prompt, default):
-    value = input(f"{prompt} [{default}]: ").strip()
-    return float(value) if value else float(default)
+    while True:
+        value = input(f"{prompt} [{default}]: ").strip()
+        if not value:
+            return float(default)
+
+        try:
+            return float(value)
+        except ValueError:
+            print("Please enter a number, or press Enter to use the default value.")
 
 
 today = [
